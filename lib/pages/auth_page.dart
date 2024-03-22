@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-// import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
-// import 'package:flutter/painting.dart';
-// import 'package:flutter/widgets.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -29,6 +27,15 @@ class AuthPage extends StatelessWidget {
           fit: BoxFit.cover,
           image: AssetImage("assets/images/BG.png"),
           opacity: 0.6,
+        ),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 1,
+          sigmaY: 1,
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0),
         ),
       ),
     );

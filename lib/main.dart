@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash_buy/pages/auth_page.dart';
 import 'package:flutter_dash_buy/pages/common_page.dart';
 import 'package:flutter_dash_buy/pages/lodaing_page.dart';
+import 'package:flutter_dash_buy/pages/reciept.dart';
 
 void main() {
   runApp(const DashBuyApp());
@@ -17,6 +18,7 @@ class DashBuyApp extends StatelessWidget {
       // home: LoadingPage(),
       // home: AuthPage(),
       home: SafeArea(child: CommonPage()),
+      // home: SafeArea(child: Reciept()),
     );
   }
 }
