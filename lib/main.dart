@@ -16,7 +16,7 @@ class DashBuyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: LoadingPage(),
       // home: AuthPage(),
-      home: CommonPage(),
+      home: SafeArea(child: CommonPage()),
     );
   }
 }

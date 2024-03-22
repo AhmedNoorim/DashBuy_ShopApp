@@ -38,13 +38,16 @@ class _CommonPageState extends State<CommonPage> {
       body: Stack(
         // alignment: Alignment.bottomCenter,
         children: [
+          // bg
           _bgImage(),
-          Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 100),
-              child: _pages[_selectedIndex],
-            ),
+
+          // pages
+          Padding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 100),
+            child: _pages[_selectedIndex],
           ),
+
+          // bottom nav bar
           Container(
             alignment: AlignmentDirectional.bottomEnd,
             child: Padding(
