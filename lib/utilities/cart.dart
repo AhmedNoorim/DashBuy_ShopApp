@@ -12,6 +12,22 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int count = 0;
+
+  void increment() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      if (count > 0) {
+        count--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +64,9 @@ class _CartPageState extends State<CartPage> {
                 child: ListView.builder(
                   itemBuilder: (context, index) {
                     return Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(12),
                       margin: EdgeInsets.only(bottom: 5, top: 5),
-                      height: 130,
+                      height: 110,
                       decoration: BoxDecoration(
                         color: Color(0xFFD9CAB3),
                         borderRadius: BorderRadius.circular(10),
@@ -60,29 +76,24 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           // image
                           Column(
-                            children: [
-                              Icon(
-                                Icons.apple,
-                                size: 40,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              CircleAvatar(
+                                radius: 37,
+                                backgroundImage:
+                                    AssetImage("assets/images/BG.png"),
                               )
                             ],
                           ),
 
                           // center text
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Product Name",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  ),
-                                  Text("Description"),
-                                ],
+                              Text(
+                                "Product Name",
+                                style: TextStyle(fontWeight: FontWeight.w600),
                               ),
 
                               // price
@@ -91,7 +102,34 @@ class _CartPageState extends State<CartPage> {
                           ),
 
                           // count button
-                          Column(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.remove_circle,
+                                      color: Color(0xFF5E0B15),
+                                    ),
+                                    onPressed: decrement,
+                                  ),
+                                  Text(
+                                    '$count',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.add_circle,
+                                      color: Color(0xFF5E0B15),
+                                    ),
+                                    onPressed: increment,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     );
