@@ -81,7 +81,7 @@ class _CartPageState extends State<CartPage> {
                               CircleAvatar(
                                 radius: 37,
                                 backgroundImage:
-                                    AssetImage("assets/images/BG.png"),
+                                    AssetImage("assets/images/noorim.png"),
                               )
                             ],
                           ),
