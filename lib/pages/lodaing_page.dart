@@ -1,20 +1,29 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dash_buy/pages/auth_page.dart';
 
 class LoadingPage extends StatelessWidget {
   const LoadingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFD9CAB3),
-      body: Stack(
-        children: [
-          _bgImage(),
-          _logo(),
-        ],
+    return AnimatedSplashScreen(
+      splash: Container(
+        color: Color(0xFFD9CAB3),
+        child: Stack(
+          children: [
+            _bgImage(),
+            _logo(),
+          ],
+        ),
       ),
+      nextScreen: AuthPage(),
+      duration: 3000,
+      splashIconSize: 950,
+      splashTransition: SplashTransition.fadeTransition,
+      backgroundColor: Color(0xFFD9CAB3),
     );
   }
 
