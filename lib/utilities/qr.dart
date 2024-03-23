@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dash_buy/pages/qr_cam.dart';
 
 class QRPage extends StatefulWidget {
   const QRPage({super.key});
@@ -27,12 +28,14 @@ class _QRPageState extends State<QRPage> {
 
           // camera qr scan display
           Expanded(
-              child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: QrScanner(),
             ),
-          ))
+          )
         ],
       ),
     );

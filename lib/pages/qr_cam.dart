@@ -10,7 +10,7 @@ class QrScanner extends StatefulWidget {
 }
 
 class _QrScannerState extends State<QrScanner> {
-  String _scanResult = "";
+  String _scanResult = "Alu";
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _QrScannerState extends State<QrScanner> {
             onPressed: () {
               scanCode();
             },
-            child: Text("Start QR Code Scan"),
+            child: Text(_scanResult),
           )
         ],
       ),

@@ -20,9 +20,9 @@ class DashBuyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: LoadingPage(),
       // home: AuthPage(),
-      // home: SafeArea(child: CommonPage()),
+      home: SafeArea(child: CommonPage()),
       // home: SafeArea(child: Reciept()),
-      home: SafeArea(child: QrScanner()),
+      // home: SafeArea(child: QrScanner()),
     );
   }
 }
