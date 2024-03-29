@@ -38,3 +38,15 @@ class DashBuyApp extends StatelessWidget {
     );
   }
 }
+
+// items {
+// 	id, name, price, image
+// }
+// -----> scanner(scan product) ---> check if product is in items
+// ---> if true return (name, price, image) ---> user.cart
+
+// user {
+// 	id, name, email, pass, image, transactionHistory{transID, date, totalPurchase}, cart, note
+// }
+//  -----> take (name, image, transHistory) ---> when checkout then push(cart) to transHistory
+//  -----> take note from firestore ---> update note and push(note) to firestore  

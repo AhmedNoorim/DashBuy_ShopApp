@@ -156,6 +156,7 @@ class _LogInPageState extends State<LogInPage> {
 
                     // password
                     TextField(
+                      obscureText: true,
                       controller: passwordController,
                       style: TextStyle(
                         fontFamily: "Poppins",

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,9 +11,9 @@ class FirebaseAuthService {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        Fluttertoast.showToast(msg: 'Invalid email or password.');
+        print('Invalid email or password.');
       } else {
-        Fluttertoast.showToast(msg: 'An error occurred: ${e.code}');
+        print('An error occurred: ${e.code}');
       }
     }
     return null;
