@@ -1,13 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dash_buy/pages/auth_page.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+import 'package:flutter_dash_buy/pages/login_page.dart';
 import 'package:flutter_dash_buy/pages/common_page.dart';
 import 'package:flutter_dash_buy/pages/lodaing_page.dart';
 import 'package:flutter_dash_buy/pages/qr_cam.dart';
 import 'package:flutter_dash_buy/pages/reciept.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const DashBuyApp());
 }
 
@@ -18,9 +26,13 @@ class DashBuyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: LoadingPage(),
-      // home: AuthPage(),
-      home: SafeArea(child: CommonPage()),
+      home: LoadingPage(),
+      routes: {
+        '/common': (context) => CommonPage(),
+        '/login': (context) => LogInPage(),
+      },
+      // home: LogInPage(),
+      // home: SafeArea(child: CommonPage()),
       // home: SafeArea(child: Reciept()),
       // home: SafeArea(child: QrScanner()),
     );

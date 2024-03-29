@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468970710343",
+    "project_id": "dash-buy",
+    "storage_bucket": "dash-buy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468970710343:android:da447aeafa09e717739862",
+        "android_client_info": {
+          "package_name": "com.example.flutter_dash_buy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRE0LnpGx2Zmu0n_PPWdLBfEJQxfTBELw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

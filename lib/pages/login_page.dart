@@ -1,10 +1,43 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+// user@gmail.com password
+// test@email.com test01
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dash_buy/pages/auth.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class LogInPage extends StatefulWidget {
+  LogInPage({super.key});
+
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
+
+class _LogInPageState extends State<LogInPage> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void _signIn() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("--------Successful--------");
+      Navigator.pushNamed(context, "/common");
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +122,7 @@ class AuthPage extends StatelessWidget {
                   children: [
                     // email or phone
                     TextField(
+                      controller: emailController,
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w500,
@@ -122,6 +156,7 @@ class AuthPage extends StatelessWidget {
 
                     // password
                     TextField(
+                      controller: passwordController,
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w500,
@@ -175,7 +210,7 @@ class AuthPage extends StatelessWidget {
                         ),
 
                         // ! on press
-                        onPressed: () {},
+                        onPressed: _signIn,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 3.0, bottom: 3.0),
                           child: Text(

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,7 +65,6 @@ class _HomePageState extends State<HomePage> {
                         return Container(
                           padding: EdgeInsets.all(20),
                           margin: EdgeInsets.only(bottom: 5, top: 5),
-                          // height: 130,
                           decoration: BoxDecoration(
                             color: Color(0xFF5E0B15),
                             borderRadius: BorderRadius.circular(10),
@@ -159,11 +159,14 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pop(context); // Close the drawer
               },
             ),
+            //! Log Out
             ListTile(
               title: Text('Logout'),
               onTap: () {
                 // Add functionality here
                 Navigator.pop(context); // Close the drawer
+                FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, '/login');
               },
             ),
             // Add more ListTiles for additional items
