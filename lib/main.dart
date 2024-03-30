@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dash_buy/pages/testPage.dart';
+import 'package:flutter_dash_buy/utilities/getUserName.dart';
 import 'firebase_options.dart';
 
 import 'package:flutter_dash_buy/pages/login_page.dart';
@@ -27,6 +29,8 @@ class DashBuyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoadingPage(),
+      // home: TestPage(),
+      // home: GetUserName("71tcjdPFWkSDYgvJjsPmzERxx3r2", "name"),
       routes: {
         '/common': (context) => CommonPage(),
         '/login': (context) => LogInPage(),
