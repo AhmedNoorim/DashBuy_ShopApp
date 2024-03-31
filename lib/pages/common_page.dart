@@ -7,9 +7,6 @@ import 'package:flutter_dash_buy/utilities/home.dart';
 import 'package:flutter_dash_buy/utilities/notes.dart';
 import 'package:flutter_dash_buy/utilities/qr.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class CommonPage extends StatefulWidget {
   const CommonPage({super.key});
 
@@ -19,37 +16,6 @@ class CommonPage extends StatefulWidget {
 
 class _CommonPageState extends State<CommonPage> {
   int _selectedIndex = 0;
-
-  //! start - getting active user id from firestore
-
-  String? loggedInUserUID;
-
-  Future<String> getLoggedInUserUID() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user = auth.currentUser;
-
-    if (user != null) {
-      String uid = user.uid;
-      print("User UID: $uid");
-      return uid;
-    } else {
-      print("No user logged in");
-      return "";
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Call the function to get the UID of the logged-in user
-    getLoggedInUserUID().then((uid) {
-      setState(() {
-        loggedInUserUID = uid;
-      });
-    });
-  }
-
-  //! end - getting active user id from firestore
 
   void _navigateBottomBar(int index) {
     setState(() {

@@ -29,7 +29,7 @@ class GetUserName extends StatelessWidget {
           return Text("Something went wrong");
         }
 
-        return Text("loading");
+        return Center(child: Text("Hello"));
       },
     );
   }

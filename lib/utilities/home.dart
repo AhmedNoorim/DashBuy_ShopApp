@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dash_buy/utilities/getTransactions.dart';
 import 'package:flutter_dash_buy/utilities/getUserName.dart';
 
 class HomePage extends StatefulWidget {
@@ -68,6 +69,8 @@ class _HomePageState extends State<HomePage> {
                   child: GetUserName(loggedInUserUID.toString(), "name"),
                 ),
               ),
+
+              // logout
               Container(
                 width: 50,
                 height: 50,
@@ -86,19 +89,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-
-          // profile
-          // ProfileTop(),
-
           SizedBox(
             height: 10,
           ),
-
-          // card container
-          // _cardContainer(),
           Expanded(
             child: Container(
               height: 100,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xFFD9CAB3),
                 borderRadius: BorderRadius.circular(10),
@@ -117,67 +114,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return Container(
-                          padding: EdgeInsets.all(20),
-                          margin: EdgeInsets.only(bottom: 5, top: 5),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF5E0B15),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: DefaultTextStyle(
-                            style: TextStyle(
-                                color: Color(0xFFD9CAB3),
-                                fontFamily: "Poppins",
-                                fontSize: 18),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Transaction ID"),
-                                    Text(
-                                      "#2134ik22r",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Date"),
-                                    Text(
-                                      "22-Jan-2024",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Total Purchase"),
-                                    Text(
-                                      "\$460",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      itemCount: 10,
-                      padding: EdgeInsets.all(10),
-                    ),
+                    child: GetTransactionHistory(loggedInUserUID.toString()),
                   ),
                 ],
               ),
@@ -187,15 +124,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // Widget _cardContainer() {
-  //   return ListView(
-  //     children: [
-  //       Container(
-  //         height: 100,
-  //         color: Colors.blue,
-  //       ),
-  //     ],
-  //   );
-  // }
 }

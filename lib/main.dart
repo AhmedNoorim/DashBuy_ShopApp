@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dash_buy/pages/testPage.dart';
+import 'package:flutter_dash_buy/utilities/getTransactions.dart';
 import 'package:flutter_dash_buy/utilities/getUserName.dart';
 import 'firebase_options.dart';
 
@@ -28,7 +29,7 @@ class DashBuyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoadingPage(),
+      // home: LoadingPage(),
       // home: TestPage(),
       // home: GetUserName("71tcjdPFWkSDYgvJjsPmzERxx3r2", "name"),
       routes: {
@@ -36,9 +37,12 @@ class DashBuyApp extends StatelessWidget {
         '/login': (context) => LogInPage(),
       },
       // home: LogInPage(),
-      // home: SafeArea(child: CommonPage()),
+      home: SafeArea(child: CommonPage()),
       // home: SafeArea(child: Reciept()),
       // home: SafeArea(child: QrScanner()),
+      // home: SafeArea(
+      //   child: GetTransactionHistory("71tcjdPFWkSDYgvJjsPmzERxx3r2"),
+      // ),
     );
   }
 }
