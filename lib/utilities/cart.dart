@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash_buy/utilities/GrandTotal.dart';
 import 'package:flutter_dash_buy/utilities/getCartItems.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:math';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -123,7 +125,10 @@ class _CartPageState extends State<CartPage> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _checkout(context);
+                              Navigator.pushNamed(context, "/common");
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFF5E0B15),
                                 padding: EdgeInsets.all(10)),
@@ -146,5 +151,72 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _checkout(BuildContext context) async {
+    try {
+      // Get current user's UID
+      String? uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid == null) {
+        // Handle the case when user is not logged in
+        return;
+      }
+
+      // Generate a unique transaction ID
+      String transactionId = _generateTransactionId();
+
+      // Get the total purchase amount
+      double totalPurchase = _getTotalPurchase();
+
+      // Get the current date
+      DateTime currentDate = DateTime.now();
+
+      // Push the new map to Firebase
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'transactionHistory': FieldValue.arrayUnion([
+          {
+            'transactionID': transactionId.toString(),
+            'totalPurchase': totalPurchase,
+            'transactionDate': Timestamp.fromDate(currentDate),
+          }
+        ]),
+      });
+
+      // Clear the cart array to Firebase
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'cart': FieldValue.delete(),
+      });
+
+      // Clear Grand Total
+      GrandTotal grandTotal = GrandTotal();
+      grandTotal.updateTotal(0.00);
+
+      // Show success message or navigate to another screen
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Checkout successful!'),
+        ),
+      );
+    } catch (e) {
+      print('Error during checkout: $e');
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred during checkout.'),
+        ),
+      );
+    }
+  }
+
+  String _generateTransactionId() {
+    // Generate a random 6-digit number as the transaction ID
+    Random random = Random();
+    int randomNumber = random.nextInt(900000) +
+        100000; // Generates a number between 100000 and 999999
+    return 'TID-$randomNumber'; // Customize the prefix as needed
+  }
+
+  double _getTotalPurchase() {
+    return grandTotal.getTotal();
   }
 }
