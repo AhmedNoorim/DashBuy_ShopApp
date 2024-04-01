@@ -10,6 +10,8 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
+  TextEditingController _notesController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +19,6 @@ class _NotesPageState extends State<NotesPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // card container
-          // _cardContainer(),
           Expanded(
             child: Container(
               height: 100,
@@ -33,10 +33,11 @@ class _NotesPageState extends State<NotesPage> {
                     child: Text(
                       "Notes",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Poppins",
-                          fontSize: 24,
-                          fontWeight: FontWeight.w500),
+                        color: Colors.black,
+                        fontFamily: "Poppins",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -54,6 +55,7 @@ class _NotesPageState extends State<NotesPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: TextField(
+                            // controller: ,
                             maxLines: null,
                             decoration: InputDecoration.collapsed(
                               hintText: "Enter your text here",

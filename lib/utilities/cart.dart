@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash_buy/utilities/GrandTotal.dart';
 import 'package:flutter_dash_buy/utilities/getCartItems.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
