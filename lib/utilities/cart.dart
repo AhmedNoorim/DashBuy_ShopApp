@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_dash_buy/utilities/GrandTotal.dart';
+import 'package:flutter_dash_buy/utilities/getCartItems.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -12,24 +14,46 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int count = 0;
+  //! start - getting active user id from firestore
+  String? loggedInUserUID;
 
-  void increment() {
-    setState(() {
-      count++;
-    });
+  Future<String> getLoggedInUserUID() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String uid = user.uid;
+      return uid;
+    } else {
+      return "";
+    }
   }
 
-  void decrement() {
-    setState(() {
-      if (count > 0) {
-        count--;
-      }
+  @override
+  void initState() {
+    super.initState();
+    // Call the function to get the UID of the logged-in user
+    getLoggedInUserUID().then((uid) {
+      setState(() {
+        loggedInUserUID = uid;
+      });
     });
+  }
+  //! end - getting active user id from firestore
+
+  GrandTotal grandTotal = GrandTotal();
+
+  double total = 0.0;
+
+  void _updateTotal() {
+    total = grandTotal.getTotal();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    _updateTotal();
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: DefaultTextStyle(
@@ -56,88 +80,13 @@ class _CartPageState extends State<CartPage> {
             ),
             Expanded(
               child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Color(0xFF5E0B15),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(12),
-                      margin: EdgeInsets.only(bottom: 5, top: 5),
-                      height: 110,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFD9CAB3),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // image
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              CircleAvatar(
-                                radius: 37,
-                                backgroundImage:
-                                    AssetImage("assets/images/noorim.png"),
-                              )
-                            ],
-                          ),
-
-                          // center text
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Product Name",
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-
-                              // price
-                              Text("\$Price")
-                            ],
-                          ),
-
-                          // count button
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.remove_circle,
-                                      color: Color(0xFF5E0B15),
-                                    ),
-                                    onPressed: decrement,
-                                  ),
-                                  Text(
-                                    '$count',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.add_circle,
-                                      color: Color(0xFF5E0B15),
-                                    ),
-                                    onPressed: increment,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: 10,
-                  padding: EdgeInsets.all(10),
-                ),
-              ),
+                  height: 100,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF5E0B15),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: GetCartItems(loggedInUserUID.toString())),
             ),
             SizedBox(
               height: 10,
@@ -162,7 +111,7 @@ class _CartPageState extends State<CartPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Grand Total"),
-                          Text("\$450"),
+                          Text("\$ $total"),
                         ],
                       ),
                     ),

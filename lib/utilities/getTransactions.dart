@@ -91,11 +91,15 @@ class GetTransactionHistory extends StatelessWidget {
               },
             );
           } else {
-            return const Text("No transaction history found");
+            return Center(
+                child: const Text("No transaction history found",
+                    style: TextStyle(color: Color(0xFF5E0B15))));
           }
         }
 
-        return const Text("Loading");
+        return Center(
+            child: const Text("Loading",
+                style: TextStyle(color: Color(0xFF5E0B15))));
       },
     );
   }

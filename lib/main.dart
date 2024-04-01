@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dash_buy/pages/testPage.dart';
+import 'package:flutter_dash_buy/utilities/cart.dart';
 import 'package:flutter_dash_buy/utilities/getTransactions.dart';
 import 'package:flutter_dash_buy/utilities/getUserName.dart';
 import 'firebase_options.dart';
@@ -35,6 +36,7 @@ class DashBuyApp extends StatelessWidget {
       routes: {
         '/common': (context) => CommonPage(),
         '/login': (context) => LogInPage(),
+        '/cart': (context) => CartPage(),
       },
       // home: LogInPage(),
       home: SafeArea(child: CommonPage()),
