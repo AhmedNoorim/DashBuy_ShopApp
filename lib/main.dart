@@ -30,7 +30,7 @@ class DashBuyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: LoadingPage(),
+      home: LoadingPage(),
       // home: TestPage(),
       // home: GetUserName("71tcjdPFWkSDYgvJjsPmzERxx3r2", "name"),
       routes: {
@@ -39,7 +39,7 @@ class DashBuyApp extends StatelessWidget {
         '/cart': (context) => CartPage(),
       },
       // home: LogInPage(),
-      home: SafeArea(child: CommonPage()),
+      // home: SafeArea(child: CommonPage()),
       // home: SafeArea(child: Reciept()),
       // home: SafeArea(child: QrScanner()),
       // home: SafeArea(

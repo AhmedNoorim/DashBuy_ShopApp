@@ -126,8 +126,10 @@ class _CartPageState extends State<CartPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              _checkout(context);
-                              Navigator.pushNamed(context, "/common");
+                              if (grandTotal.getTotal() > 0.0) {
+                                _checkout(context);
+                                Navigator.pushNamed(context, "/common");
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFF5E0B15),

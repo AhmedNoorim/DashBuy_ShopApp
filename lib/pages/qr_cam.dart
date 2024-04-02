@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
+import '../utilities/get_item_data.dart';
+
 class QrScanner extends StatefulWidget {
   const QrScanner({super.key});
 
@@ -10,7 +12,7 @@ class QrScanner extends StatefulWidget {
 }
 
 class _QrScannerState extends State<QrScanner> {
-  String _scanResult = "Alu";
+  String _scanResult = "Scan Item";
 
   @override
   void initState() {
@@ -31,7 +33,7 @@ class _QrScannerState extends State<QrScanner> {
     });
 
     print(_scanResult);
-    print("Print");
+    GetCartData(_scanResult, context);
   }
 
   @override
