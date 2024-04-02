@@ -3,32 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> GetCartData(String itemName, BuildContext context) async {
-  try {
-    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-        .collection('items')
-        .doc(itemName.toString())
-        .get();
+  DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+      .collection('items')
+      .doc(itemName.toString())
+      .get();
 
-    if (documentSnapshot.exists) {
-      Map<String, dynamic> itemData =
-          documentSnapshot.data() as Map<String, dynamic>;
-      // Assuming your document has fields named field1, field2, and field3
-      print("-----------------------itemData-------------------------");
-      var name = itemData['name'];
-      var price = itemData['price'];
-      var image = itemData['image'];
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> itemData =
+        documentSnapshot.data() as Map<String, dynamic>;
 
-      // Now you have your three fields saved into variables
-      print('Field 1: $name');
-      print('Field 2: $price');
-      print('Field 3: $image');
+    var name = itemData['name'];
+    var price = itemData['price'];
+    var image = itemData['image'];
 
-      _updateCart(context, name, price.toDouble(), image);
-    } else {
-      print('Document does not exist');
-    }
-  } catch (e) {
-    print('Error fetching and saving data: $e');
+    _updateCart(context, name, price.toDouble(), image);
+  } else {
+    print('Document does not exist');
   }
 }
 

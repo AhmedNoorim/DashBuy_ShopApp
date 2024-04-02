@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash_buy/utilities/cart.dart';
 import 'package:flutter_dash_buy/utilities/home.dart';
 import 'package:flutter_dash_buy/utilities/notes.dart';
-import 'package:flutter_dash_buy/utilities/qr.dart';
+import 'package:flutter_dash_buy/pages/qr_page.dart';
 
 class CommonPage extends StatefulWidget {
   const CommonPage({super.key});
@@ -28,6 +28,7 @@ class _CommonPageState extends State<CommonPage> {
     CartPage(),
     NotesPage(),
     QRPage(),
+    // QRPage(),
   ];
 
   @override

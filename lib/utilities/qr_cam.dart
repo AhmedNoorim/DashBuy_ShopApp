@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
-import '../utilities/get_item_data.dart';
+import 'get_item_data.dart';
 
 class QrScanner extends StatefulWidget {
   const QrScanner({super.key});
@@ -12,7 +14,7 @@ class QrScanner extends StatefulWidget {
 }
 
 class _QrScannerState extends State<QrScanner> {
-  String _scanResult = "Scan Item";
+  String _scanResult = "Nothing";
 
   @override
   void initState() {
@@ -32,23 +34,49 @@ class _QrScannerState extends State<QrScanner> {
       _scanResult = barcodeScanRes;
     });
 
-    print(_scanResult);
     GetCartData(_scanResult, context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage("assets/images/BG.png"),
+        fit: BoxFit.cover,
+        opacity: 0.2,
+      )),
       alignment: Alignment.center,
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text(
+            "$_scanResult is added to cart!",
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
           ElevatedButton(
+            style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all<Size>(Size(200, 50))),
             onPressed: () {
               scanCode();
             },
-            child: Text(_scanResult),
+            child: Text(
+              "Scan Product",
+              style: TextStyle(
+                color: Color(0xFF5E0B15),
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w400,
+                fontSize: 24,
+              ),
+            ),
           )
         ],
       ),

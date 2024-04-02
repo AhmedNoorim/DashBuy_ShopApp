@@ -12,8 +12,7 @@ import 'firebase_options.dart';
 import 'package:flutter_dash_buy/pages/login_page.dart';
 import 'package:flutter_dash_buy/pages/common_page.dart';
 import 'package:flutter_dash_buy/pages/lodaing_page.dart';
-import 'package:flutter_dash_buy/pages/qr_cam.dart';
-import 'package:flutter_dash_buy/pages/reciept.dart';
+import 'package:flutter_dash_buy/utilities/qr_cam.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +29,7 @@ class DashBuyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoadingPage(),
+      // home: LoadingPage(),
       // home: TestPage(),
       // home: GetUserName("71tcjdPFWkSDYgvJjsPmzERxx3r2", "name"),
       routes: {
@@ -39,7 +38,7 @@ class DashBuyApp extends StatelessWidget {
         '/cart': (context) => CartPage(),
       },
       // home: LogInPage(),
-      // home: SafeArea(child: CommonPage()),
+      home: SafeArea(child: CommonPage()),
       // home: SafeArea(child: Reciept()),
       // home: SafeArea(child: QrScanner()),
       // home: SafeArea(
