@@ -2,9 +2,9 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_dash_buy/utilities/cart.dart';
-import 'package:flutter_dash_buy/utilities/home.dart';
-import 'package:flutter_dash_buy/utilities/notes.dart';
+import 'package:flutter_dash_buy/pages/cart.dart';
+import 'package:flutter_dash_buy/pages/home.dart';
+import 'package:flutter_dash_buy/pages/notes.dart';
 import 'package:flutter_dash_buy/pages/qr_page.dart';
 
 class CommonPage extends StatefulWidget {
